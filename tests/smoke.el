@@ -1,0 +1,12 @@
+;;; smoke.el --- Isolated configuration check -*- lexical-binding: t; -*-
+(setq user-emacs-directory (file-name-as-directory (getenv "NXS_TEST_CONFIG")))
+(setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
+(load (expand-file-name "early-init.el" user-emacs-directory) nil nil t)
+(load (expand-file-name "init.el" user-emacs-directory) nil nil t)
+(run-hooks 'after-init-hook)
+(run-hooks 'emacs-startup-hook)
+(emacs-nxs/start-refresh)
+(unless (get-buffer "*Start*") (error "Start page missing"))
+(when (seq-some (lambda (feature) (string-match-p "perinf" (symbol-name feature))) features)
+  (error "Excluded feature loaded"))
+(princ "NXS-STARTUP-AND-DASHBOARD-OK\n")

@@ -1,0 +1,18 @@
+# -*- mode: org; lexical-binding: t; coding: utf-8 -*-
+#+TITLE: {{title}}
+#+AUTHOR: {{author}}
+#+DATE: \today
+#+EMAIL: {{email}}
+#+LANGUAGE: da
+#+CATEGORY: org
+#+DESCRIPTION: {{description}}
+#+KEYWORDS: {{keywords}}
+#+STARTUP: inlineimages constSI entitiespretty
+#+OPTIONS: H:3 num:t toc:nil \n:nil @:t e:t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: tex:t arch:t title:nil broken-links:mark
+# Fælles basis-preamble
+# Tabeller får som standard mørkegrønt tabelhoved med hvid tekst og
+# skiftevis hvid/lysegrøn baggrund. Kolonnerne tilpasses den enkelte tabel.
+# En enkelt tabel kan få andre tabularray-valg med en #+ATTR_LATEX: :align-linje.
+# Dokumentets særlige header, hvis den skal bruges
+# Valgfrie moduler. Fjern "# " foran de moduler, dokumentet behøver.
