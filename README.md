@@ -37,3 +37,12 @@ python3 -m unittest discover -s tests -v
 
 Developed by Niels Søndergaard from Rahul Martim Juliato's Emacs Solo.
 Existing source attribution is retained. GPL-3.0-or-later; see `COPYING`.
+
+## Emacs Lisp
+
+Paredit provides structured editing in Emacs Lisp and IELM, alongside the
+existing completion, Eldoc and Flymake setup. `C-c e` groups evaluation (`d`,
+`b`, `r`), IELM (`i`), Edebug (`e`), ERT (`t`), parenthesis checking (`p`),
+documentation checking (`c`) and byte compilation (`k`). Evaluation runs code
+in the current Emacs. Compilation asks before saving modified source.
+Standard editing and evaluation bindings remain available.
