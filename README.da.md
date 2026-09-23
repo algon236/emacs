@@ -42,7 +42,7 @@ hele stien `/Applications/Emacs.app/Contents/MacOS/Emacs` bruges, hvis `emacs`
 ikke er tilgængelig i terminalens søgesti.
 
 Pakkelisten omfatter auctex, card-games, casual, dired-subtree, eat, nerd-icons,
-nerd-icons-dired, org-draw, org-modern, org-roam, org-roam-ui og pdf-tools.
+nerd-icons-dired, org-draw, org-modern, org-roam, org-roam-ui, paredit og pdf-tools.
 Afhængigheder installeres med dem. Der hentes aktuelle versioner fra GNU ELPA,
 NonGNU ELPA og MELPA; distributionen indeholder ikke fastlåste pakkekopier.
 Normal opstart henter ikke automatisk manglende pakker.
@@ -94,3 +94,13 @@ Se `VALIDATION.md` for den udførte kontrol og dens begrænsninger.
 For at afinstallere: luk den Emacs, som bruger pakken, og fjern den valgte
 installationsmappe efter at have gemt eventuelle egne indstillinger.
 Dokumenterne i `~/org` ligger uden for installationsmappen.
+
+## Emacs Lisp
+
+Paredit giver struktureret redigering i Emacs Lisp og IELM. Eldoc, Flymake og
+den eksisterende kodefuldførelse bruges fortsat. `C-c e` samler kommandoer:
+`d` evaluerer definitionen, `b` bufferen, `r` regionen, `i` åbner IELM,
+`e` instrumenterer til Edebug, `t` kører ERT, `p` kontrollerer parenteser,
+`c` kontrollerer dokumentation, og `k` bytekompilerer filen.
+Evaluering kører koden i den aktuelle Emacs. Bytekompilering spørger før
+gemning af en ændret buffer. Standardgenvejene er bevaret.
