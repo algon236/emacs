@@ -1,26 +1,36 @@
-# Validation — 2026-09-20
+# Validation — 2026-09-24 — NXS 1.0.1
 
-Platform: macOS, GNU Emacs 32.0.50 (build dated 2026-08-19).
+Platform: macOS on Apple Silicon, GNU Emacs 32.0.50.
 
-- Installer tests: fresh installation, refusal to overwrite an existing
-  installation, refusal to follow a dangling destination symlink, and exclusion
-  of private runtime state passed (3 tests).
-- Configuration loaded with early-init.el and init.el in a separate HOME and
-  installation directory. Startup hooks and bookmark dashboard were exercised.
-- All 13 declared external packages were downloaded and installed, with their
-  dependencies, into the temporary installation. A fresh Emacs process then
-  loaded the configuration and dashboard successfully with all declared
-  packages present and no startup error in the log.
-- A separate empty-HOME test also exercises first startup before package
-  installation. Missing-package warnings are expected in that case.
-- Configuration contains no excluded personal-information module, its bindings
-  or dashboard integration, and no /Users/ paths. Author credit is retained.
-- Original copied source files were checked against their pre-copy SHA-256
-  hashes and were unchanged.
-- Distribution ZIP is checked for archive integrity, extracted, and its
-  installer and overwrite tests are run again. SHA-256 is supplied alongside it.
+- 13 installer tests passed: overwrite and symlink protection, private-state
+  exclusion, marked-directory resume with personal edits preserved, default
+  automatic setup, explicit configuration-only mode, scoped compiler/SDK
+  selection including compilation and execution, compiler failure reporting,
+  PDF dependency installation and recheck, missing Homebrew reporting, recorded
+  batch failures, and failure followed by successful resume.
+- A real installation ran with an empty HOME and an empty destination containing
+  a space in its name. All 14 declared Emacs packages and their dependencies were
+  fetched from live archives. epdfinfo was built from source in that destination;
+  pdf-info-check-epdfinfo successfully rendered its test PDF page.
+- The compiler preflight selected CommandLineTools with its own SDK, compiled a
+  minimal C program, and executed it. No global developer-directory change was
+  made. Existing Homebrew libraries on the test Mac were reused; installing
+  absent Homebrew libraries was covered by mocked tests, not a second pristine Mac.
+- A fresh Emacs process loaded early-init.el and init.el from the installed
+  destination, ran startup hooks, refreshed the bookmark dashboard, confirmed
+  all declared packages, and passed the PDF rendering check. No startup errors
+  or NXS missing-package warnings appeared.
+- Resume completed on the installed test copy. No package downloads or helper
+  rebuild were needed. Failure/resume preserving edits is also covered by tests.
+- Parenthesis checks passed for configuration Lisp files and installation/test
+  entry points. Git whitespace checks passed.
+- The release ZIP was integrity-checked, extracted, privacy-screened, and its
+  installer tests were run from the extracted copy. Configuration-only copying
+  was also exercised from the extracted distribution. A SHA-256 file accompanies
+  the ZIP.
 
-These are automated startup and installation checks, not a visual GUI review
-or an exhaustive exercise of every editor command. TeX export, language servers,
-external tools, Linux and Windows have not been validated. Dependencies are
-fetched from live package archives and can change after this validation.
+This verifies automated installation, startup and PDF helper rendering, not a
+visual GUI review or every editor command. Emacs, Python, Apple development tools
+and (when libraries are missing) Homebrew remain prerequisites. TeX export,
+language servers, Linux and Windows are not validated. External packages are
+fetched from live archives and may change after this validation.
