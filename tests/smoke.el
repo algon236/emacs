@@ -1,4 +1,5 @@
 ;;; smoke.el --- Isolated configuration check -*- lexical-binding: t; -*-
+;; Copyright (C) 2026 Niels Søndergaard
 (setq user-emacs-directory (file-name-as-directory (getenv "NXS_TEST_CONFIG")))
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory))
 (load (expand-file-name "early-init.el" user-emacs-directory) nil nil t)
@@ -10,3 +11,10 @@
 (when (seq-some (lambda (feature) (string-match-p "perinf" (symbol-name feature))) features)
   (error "Excluded feature loaded"))
 (princ "NXS-STARTUP-AND-DASHBOARD-OK\n")
+
+(when (getenv "NXS_TEST_COMPLETE")
+  (dolist (package emacs-nxs-required-packages)
+    (unless (package-installed-p package) (error "Missing package: %s" package)))
+  (require 'pdf-tools)
+  (pdf-info-check-epdfinfo)
+  (princ "NXS-ALL-PACKAGES-AND-PDF-OK\n"))

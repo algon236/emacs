@@ -58,33 +58,8 @@
 ;;
 (if nec/measure-time (nec/header "start load time (in 'init.el')"))
 
-(require 'package)
-
-(setq package-archives
-      '(("gnu"    . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-        ("melpa"  . "https://melpa.org/packages/"))
-      package-archive-priorities
-      '(("gnu"    . 30)
-        ("nongnu" . 20)
-        ("melpa"  . 10)))
-
-(package-initialize)
-
+(load (expand-file-name "lisp/emacs-nxs-packages.el" user-emacs-directory) nil t)
 (setq use-package-always-ensure nil)
-(defconst emacs-nxs-required-packages
-  '(auctex card-games casual dired-subtree eat nerd-icons nerd-icons-dired
-    org-draw org-modern org-roam org-roam-ui paredit pdf-tools)
-  "External packages used by this configuration; dependencies install with them.")
-
-(defun emacs-nxs/install-missing-packages ()
-  "Install missing NXS packages explicitly, rather than during ordinary startup."
-  (interactive)
-  (let ((missing (seq-remove #'package-installed-p emacs-nxs-required-packages)))
-    (when missing
-      (package-refresh-contents)
-      (mapc #'package-install missing))
-    (message "NXS packages installed; restart Emacs to load missing features")))
 
 (defun emacs-nxs/package-ensure (name ensure _state)
   "Check NAME and ENSURE without network activity during startup."
@@ -3414,8 +3389,17 @@ As seen on: https://emacs.dyerdwelling.family/emacs/20250604085817-emacs--buildi
 
   :config
   ;; Aktivér pdf-tools og kontrollér den tilhørende epdfinfo-server.
-  ;; `:no-query' undgår et spørgsmål ved almindelig opstart.
-  (pdf-tools-install :no-query)
+  ;; Bygning håndteres af installationsprogrammet, ikke ved almindelig opstart.
+  (condition-case err
+      (progn
+        (pdf-info-check-epdfinfo)
+        (pdf-tools-install-noverify))
+    (error
+     (display-warning
+      'emacs-nxs
+      (format "PDF-hjælperen virker ikke: %s. Kør installationsprogrammet med --resume --target %s."
+              (error-message-string err) user-emacs-directory)
+      :warning)))
   (setq-default pdf-view-display-size 'fit-page)
   (setq pdf-view-use-scaling t
         pdf-view-use-imagemagick nil))
