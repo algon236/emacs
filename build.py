@@ -13,6 +13,7 @@ files = [root / p for p in ('README.md', 'README.da.md', 'COPYING', 'VERSION',
                            'VALIDATION.md', 'install.py', 'bootstrap.el', 'build.py', '.gitignore',
                            'tests/test_install.py', 'tests/smoke.el')]
 files += [root / 'config/early-init.el', root / 'config/init.el', root / 'config/lisp/LICENSE', root / 'config/images/ringe.png']
+files += sorted((root / 'docs').glob('*.md'))
 files += sorted((root / 'config/lisp').glob('*.el'))
 files += sorted((root / 'config/var/templates').glob('*'))
 archive = out / f'{name}.zip'
