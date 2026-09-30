@@ -1540,6 +1540,12 @@ Ex: mpv file1 file2 file3 file4..."
        (define-key dired-mode-map (kbd "b") 'dired-up-directory))))
 
 
+;;; fast display
+(with-eval-after-load 'dired
+  (keymap-set dired-mode-map "SPC" #'dired-display-file))
+(with-eval-after-load 'ibuffer
+  (keymap-set ibuffer-mode-map "SPC" #'ibuffer-visit-buffer-other-window-noselect))
+
 ;;; │ WDIRED
 (use-package wdired
   :ensure nil

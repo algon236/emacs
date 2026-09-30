@@ -1,4 +1,4 @@
-# Emacs NXS 1.0.1
+# Emacs NXS 1.0.3
 
 Portable NXS configuration derived from Emacs Solo, with themes, a bookmark
 start page, Org, Org-roam, LaTeX, Dired and development tools.

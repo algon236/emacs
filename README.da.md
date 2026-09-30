@@ -1,4 +1,4 @@
-# Emacs NXS 1.0.1
+# Emacs NXS 1.0.3
 
 En selvstændig installationspakke af NXS-konfigurationen med temaer, startside,
 bogmærker, Org, Org-roam, LaTeX, Dired og programmeringsværktøjer.

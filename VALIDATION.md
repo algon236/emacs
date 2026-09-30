@@ -1,4 +1,13 @@
-# Validation — 2026-09-24 — NXS 1.0.1
+# Validation — 2026-09-30 — NXS 1.0.3
+
+- Configuration startup and dashboard smoke checks passed.
+- Loading Dired and Ibuffer confirmed both new SPC bindings.
+- The active Emacs daemon restarted without initialization errors.
+- The smoke check used a configuration without external packages installed;
+  expected missing-package warnings were emitted. Dependency installation was
+  not repeated for this change.
+
+## Earlier installation validation — 2026-09-24 — NXS 1.0.1
 
 Platform: macOS on Apple Silicon, GNU Emacs 32.0.50.
 
